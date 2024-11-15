@@ -225,7 +225,7 @@ async def result_getter(
     await update_result(session, achevement_id, result)
 
     real_name = await get_real_name(session, event_from_user.id)
-    if result <= 35:
+    if result <= 40:
         text = 1
     elif result <= 50:
         text = 2
