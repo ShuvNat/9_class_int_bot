@@ -207,17 +207,19 @@ async def result_getter(
         ss, ssg, ssgi, ssfg, sssg, sseg, olymp, olymp_grade, year, result
         )
 
-    if fsg == 1:
+    if fsgi == 1:
         fsfg *= PRO.value
         fssg *= PRO.value
         fseg *= EXAM_PRO.value
-    if ssg == 1:
+    if ssgi == 1:
         ssfg *= PRO.value
         sssg *= PRO.value
         sseg *= EXAM_PRO.value
+
     calculate = ((fsfg + fssg + ssfg + sssg + year) * BASIC.value +
                  (fseg + sseg) * EXAM_BASIC.value +
                  olymp_grade*OLYMP.value - 5)/MAX.value*100
+
     result = round(calculate, 2)
 
     await update_result(session, achevement_id, result)
