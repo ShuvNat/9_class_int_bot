@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.requests import get_real_name, save_result, update_user, update_result
 from .admin_dialog_handlers import (
-    Classes, BASIC, EXAM_BASIC, EXAM_PRO, MAX, PRO
+    Classes, BASIC, EXAM_BASIC, EXAM_PRO, MAX, OLYMP, PRO
     )
 
 
@@ -215,11 +215,9 @@ async def result_getter(
         ssfg *= PRO.value
         sssg *= PRO.value
         sseg *= EXAM_PRO.value
-    calculate = ((
-        fsfg + fssg + ssfg + sssg + olymp_grade + year
-        ) * BASIC.value + (
-            fseg + sseg
-            ) * EXAM_BASIC.value)/MAX.value*100
+    calculate = ((fsfg + fssg + ssfg + sssg + year) * BASIC.value +
+                 (fseg + sseg) * EXAM_BASIC.value +
+                 olymp_grade*OLYMP.value - 5)/MAX.value*100
     result = round(calculate, 2)
 
     await update_result(session, achevement_id, result)

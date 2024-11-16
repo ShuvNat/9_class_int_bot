@@ -32,8 +32,9 @@ BASIC = Coefficients(
 
 EXAM_BASIC = Coefficients(
     'Базовый для экзаменов',
-    1
+    0.9
 )
+
 
 PRO = Coefficients(
     'Для углубления',
@@ -45,12 +46,17 @@ EXAM_PRO = Coefficients(
     0.9
 )
 
-MAX = Coefficients(
-    'Максимальная сумма баллов',
-    36
+OLYMP = Coefficients(
+    'Олимпиадный',
+    0.2
 )
 
-COEFFICIENTS_LIST = [BASIC, EXAM_BASIC, EXAM_PRO, PRO, MAX]
+MAX = Coefficients(
+    'Максимальная сумма баллов',
+    29
+)
+
+COEFFICIENTS_LIST = [BASIC, EXAM_BASIC, EXAM_PRO, PRO, OLYMP, MAX]
 
 
 def is_valid_class(text: str) -> bool:
