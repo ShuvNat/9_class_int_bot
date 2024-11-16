@@ -53,7 +53,7 @@ OLYMP = Coefficients(
 
 MAX = Coefficients(
     'Максимальная сумма баллов',
-    29
+    27.2
 )
 
 COEFFICIENTS_LIST = [BASIC, EXAM_BASIC, EXAM_PRO, PRO, OLYMP, MAX]
