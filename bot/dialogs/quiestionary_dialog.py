@@ -230,7 +230,8 @@ questionnaire_dialog = Dialog(
         state=QuestionnaireState.olymp,
     ),
     Window(
-        Const('15. Какой средний балл за 9 класс вы ожидаете?\n'
+        Const('15. Какой средний балл аттестата за 9 класс вы ожидаете?\n'
+              'Имеется в виду средний балл по всем предметам\n'
               'Напишите число от 1 до 5 с точностью до сотых'),
         MessageInput(
             func=grade_handler,
