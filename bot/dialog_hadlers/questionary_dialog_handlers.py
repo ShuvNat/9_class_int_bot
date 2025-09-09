@@ -193,14 +193,16 @@ async def result_getter(
     else:
         ssgi = 1
 
-    if olymp == 'Het':
+    if olymp == 'Heт':
         olymp_grade = 0
     elif olymp == 'Муниципальный тур':
         olymp_grade = 2
     elif olymp == 'Региональный тур':
         olymp_grade = 7
-    else:
+    elif olymp == 'Финал':
         olymp_grade = 10
+    else:
+        olymp_grade = 0
 
     achevement_id = await save_result(
         session, event_from_user.id, fs, fsg, fsgi, fsfg, fssg, fseg,
