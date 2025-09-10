@@ -15,8 +15,8 @@ FILEPATH = Path(__file__).resolve().parent.parent
 
 
 class Classes:
-    first_class = '9Б'
-    second_class = '9Г'
+    first_class = '9И'
+
 
 
 @dataclass
