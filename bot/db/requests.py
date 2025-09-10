@@ -138,7 +138,8 @@ async def get_results(
             Achevements.olymp,
             Achevements.olymp_grade,
             Achevements.year_grade,
-            Achevements.result
+            Achevements.result,
+            Achevements.created_at
             )
         .join(Achevements, User.telegram_id == Achevements.user_id)
         .order_by(User.last_name, User.first_name)

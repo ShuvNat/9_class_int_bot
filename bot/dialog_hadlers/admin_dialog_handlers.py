@@ -102,7 +102,8 @@ async def get_xlsx_file(
         'Олимпиада',
         'Балл олимпиады',
         'Годовой балл',
-        'Результат'
+        'Результат',
+        'Время прохождения'
         ])
     df.to_excel(filepath, index=False)
     with ExcelWriter(
