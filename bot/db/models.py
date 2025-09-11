@@ -2,7 +2,7 @@ from datetime import date
 from uuid import UUID
 
 from sqlalchemy import (
-    BigInteger, Date, Integer, Float, ForeignKey, String, Uuid,
+    BigInteger, DateTime, Integer, Float, ForeignKey, String, Uuid,
     func, text
     )
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
@@ -10,10 +10,16 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 class Base(DeclarativeBase):
     created_at: Mapped[date] = mapped_column(
-        Date,
+        DateTime,
         nullable=False,
         server_default=func.now(),
     )
+
+    @property
+    def created_at_str(self) -> str:
+        if self.created_at is None:
+            return "Не указано"
+        return self.created_at.strftime("%Y.%m.%d %H:%M")
 
 
 class User(Base):

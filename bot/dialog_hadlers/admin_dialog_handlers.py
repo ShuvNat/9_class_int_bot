@@ -1,10 +1,10 @@
+import pandas as pd
 import re
 from aiogram.types import CallbackQuery, Message, FSInputFile, User
 from aiogram_dialog import DialogManager, ShowMode
 from aiogram_dialog.widgets.input import MessageInput
 from aiogram_dialog.widgets.kbd import Button, Select
 from dataclasses import dataclass
-from pandas import DataFrame, ExcelWriter
 from pathlib import Path
 
 
@@ -84,7 +84,7 @@ async def get_xlsx_file(
     list = await get_results(session)
     filename = ('Статистика.xlsx')
     filepath = FILEPATH / f'files/{filename}'
-    df = DataFrame(list, columns=[
+    df = pd.DataFrame(list, columns=[
         'Фамилия',
         'Имя',
         '1 профиль',
@@ -105,8 +105,14 @@ async def get_xlsx_file(
         'Результат',
         'Время прохождения'
         ])
+    df['Время прохождения'] = df['Время прохождения'].apply(
+        lambda x: x.strftime("%Y.%m.%d %H:%M") if pd.notnull(x) else None
+    )
+    df = df.sort_values(
+        by=['Фамилия', 'Время прохождения'], ascending=[True, True]
+        )
     df.to_excel(filepath, index=False)
-    with ExcelWriter(
+    with pd.ExcelWriter(
             filepath, engine='openpyxl', mode='a'
             ) as writer:
         worksheet = writer.sheets['Sheet1']
